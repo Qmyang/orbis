@@ -5,7 +5,10 @@ from PythonClientAPI.libs.Game.MapOutOfBoundsException import *
 class PlayerAI:
     def __init__(self):
         # Initialize any objects or variables you need here.
-        pass
+            self.up = None
+            self.right = None
+            self.down = None
+            self.left = None
 
     def relative_offset_to_absolute(self,facing, x, y):
         if facing == Direction.UP:
@@ -28,8 +31,31 @@ class PlayerAI:
             return 3
 
     def translate_directions(self, player):
-        self.
-
+        if player.direction == Direction.UP:
+            self.up = Direction.UP
+            self.right = Direction.RIGHT
+            self.down = Direction.DOWN
+            self.left = Direction.LEFT
+        elif player.direction == Direction. RIGHT:
+            self.up = Direction.RIGHT
+            self.right = Direction.DOWN
+            self.down = Direction.LEFT
+            self.left = Direction.UP
+        elif player.direction == Direction. DOWN:
+            self.up = Direction.DOWN
+            self.right = Direction.LEFT
+            self.down = Direction.UP
+            self.left = Direction.RIGHT
+        elif player.direction == Direction. LEFT:
+            self.up = Direction.LEFT
+            self.right = Direction.UP
+            self.down = Direction.RIGHT
+            self.left = Direction.DOWN
+        else:
+            self.up = None
+            self.right = None
+            self.down = None
+            self.left = None
     def get_left_private_direction(self, priv_direction):
 
 
