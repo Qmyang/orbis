@@ -1,5 +1,5 @@
 {
-	"numberOfAIPlayers": "1",
+	"numberOfAIPlayers": "0",
 	"renderGUI": "true",
 	"mapName": "SimpleMap1.json",
 	"swapAIPlayers": "false",
