@@ -5,6 +5,7 @@ from PythonClientAPI.libs.Game.MapOutOfBoundsException import *
 class PlayerAI:
     def __init__(self):
         # Initialize any objects or variables you need here.
+            self.i = 0
             self.up = None
             self.right = None
             self.down = None
@@ -56,14 +57,34 @@ class PlayerAI:
             self.right = None
             self.down = None
             self.left = None
-    def get_left_private_direction(self, priv_direction):
+
+    def is_bullet_chasing(self,player, gameboard):
+        player_position = player.x, player.y
+        behind_slot = player_position - self.relative_offset_to_absolute(0, 1)
+        if gameboard.are_bullets_at_tile(behind_slot):
+            bullets = gameboard.bullets_at_tile[behind_slot[0]][behind_slot[1]]
+            for bullet in bullets:
+                if bullet.direction == player.direction:
+                    return True
+                else:
+                    pass
+        return False
+
 
 
     def get_valid_moves(self, gameboard, player, opponent):
-        pass
+        valid_moves = [Move.NONE]
+        if self.is_bullet_chasing(player, gameboard):
+            valid_moves.append(Move.FORWARD)
+            return valid_moves
+        return valid_moves
+
+
+        # if there is a bullet right behind you, you can only move forward
+
 
     def get_move(self, gameboard, player, opponent):
         # Write your AI here.
-        gameboard.bullets
+
         return Move.NONE
 
