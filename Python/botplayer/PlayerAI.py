@@ -4,13 +4,13 @@ from PythonClientAPI.libs.Game.MapOutOfBoundsException import *
 
 class PlayerAI:
     def __init__(self):
+        self.i = 0
         # Initialize any objects or variables you need here.
-            self.i = 0
-            self.up = None
-            self.right = None
-            self.down = None
-            self.left = None
-
+        self.i = 0
+        self.up = None
+        self.right = None
+        self.down = None
+        self.left = None
     def relative_offset_to_absolute(self,facing, x, y):
         if facing == Direction.UP:
             return x,y
@@ -87,4 +87,26 @@ class PlayerAI:
         # Write your AI here.
 
         return Move.NONE
+=======
+
+
+    def get_move(self, gameboard, player, opponent):
+        # Write your AI here.
+        #gameboard.bullets
+        # Write your AI here.
+        if self.i == 0:
+            self.i = self.i+1
+            return Move.FACE_LEFT
+        elif self.i == 1:
+            self.i = self.i+1
+            return Move.SHOOT
+        elif self.i == 2:
+            self.i = self.i+1
+            return Move.FACE_RIGHT
+        elif self.i == 3:
+            self.i = self.i+1
+            return Move.SHOOT
+        else :
+            return Move.NONE
+>>>>>>> new changes
 
