@@ -270,7 +270,7 @@ class PlayerAI:
         print (valid_moves)
 
         temp_move = self.maniac.checkforassasin(gameboard,player,opponent)
-        if temp_move in valid_moves:
+        if (temp_move in valid_moves) and (temp_move !=Move.NONE):
             move_choice = temp_move
         else:
             for move in valid_moves:

@@ -53,6 +53,10 @@ class Maniac:
             else:
                 return False
     def autoadjust(self, gameboard, player, opponent):
+            print(opponent.x)
+            print(opponent.y)
+            print(player.x)
+            print(player.y)
             if opponent.y>player.y and player.direction!=Direction.DOWN and opponent.x ==player.x:
                 return Move.FACE_DOWN
             elif opponent.x == player.x and opponent.y<player.y and player.direction!=Direction.UP:

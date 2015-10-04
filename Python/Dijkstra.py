@@ -1,6 +1,7 @@
 from PythonClientAPI.libs.Game.Enums import *
 from PythonClientAPI.libs.Game.GameBoard import *
 from PythonClientAPI.libs.Game.fibonacci_heap_mod import *
+import queue
 from queue import PriorityQueue
 class grid:
     def __init__(self,x,y,value):
@@ -13,6 +14,7 @@ class Dijkstra:
     def __init__(self,gameboard):
         self.grid = [[None for x in range(gameboard.height)] for x in range(gameboard.width)]
         self.run()
+        self.qset = queue()
         self.pqueue = PriorityQueue()
 
     def run(self, gameboard,x,y):
