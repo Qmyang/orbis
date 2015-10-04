@@ -112,6 +112,12 @@ class PlayerAI:
             front_bullet_slot = tuple(map(operator.add, player_position, self.relative_offset_to_absolute(player.direction, 0, self.height - 1)))
         return front_bullet_slot
 
+    def get_back_coords(self, player, player_position, gameboard):
+        front_bullet_slot = tuple(map(operator.add, player_position, self.relative_offset_to_absolute(player.direction, 0,+1)))
+        if front_bullet_slot[0] < 0 or front_bullet_slot[0] == gameboard.width or front_bullet_slot[1] < 0 or front_bullet_slot[1] == gameboard.height:
+            front_bullet_slot = tuple(map(operator.add, player_position, self.relative_offset_to_absolute(player.direction, 0, -self.height + 1)))
+        return front_bullet_slot
+
     def turret_dangerous(self, turret):
         print("turret_counter")
         print(self.turret_counter[turret.x][turret.y])
@@ -216,8 +222,15 @@ class PlayerAI:
             valid_moves.append(Move.SHIELD)
         if not self.frontal_danger(player, gameboard, opponent):
             valid_moves.append(Move.FORWARD)
-
-
+        left_slot = self.get_left_coords(player, (player.x, player.y), gameboard)
+        right_slot = self.get_right_coords(player, (player.x, player.y), gameboard)
+        back_slot = self.get_back_coords(player, (player.x, player.y), gameboard)
+        if not gameboard.is_wall_at_tile(left_slot[0], left_slot[1]) and not left_slot == (opponent.x, opponent.y):
+            valid_moves.append(Move.FACE_LEFT)
+        if not gameboard.is_wall_at_tile(right_slot[0], right_slot[1]) and not right_slot == (opponent.x, opponent.y):
+            valid_moves.append(Move.FACE_RIGHT)
+        if not gameboard.is_wall_at_tile(back_slot[0], back_slot[1]) and not back_slot == (opponent.x, opponent.y):
+            valid_moves.append(Move.FACE_DOWN)
 
         return valid_moves
 
