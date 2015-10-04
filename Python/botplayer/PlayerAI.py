@@ -203,6 +203,15 @@ class PlayerAI:
                     return True
         return False
 
+    def absolute_direction_move_from_relative(self, direction ):
+        if direction == Direction.UP:
+            return Move.FACE_UP
+        if direction == Direction.RIGHT:
+            return Move.FACE_RIGHT
+        if direction == Direction.DOWN:
+            return Move.FACE_DOWN
+        if direction == Direction.LEFT:
+            return Move.FACE_LEFT
 
     def get_valid_moves(self, gameboard, player, opponent):
         valid_moves = []
@@ -226,11 +235,11 @@ class PlayerAI:
         right_slot = self.get_right_coords(player, (player.x, player.y), gameboard)
         back_slot = self.get_back_coords(player, (player.x, player.y), gameboard)
         if not gameboard.is_wall_at_tile(left_slot[0], left_slot[1]) and not left_slot == (opponent.x, opponent.y):
-            valid_moves.append(Move.FACE_LEFT)
+            valid_moves.append(self.absolute_direction_move_from_relative(self.left))
         if not gameboard.is_wall_at_tile(right_slot[0], right_slot[1]) and not right_slot == (opponent.x, opponent.y):
-            valid_moves.append(Move.FACE_RIGHT)
+            valid_moves.append(self.absolute_direction_move_from_relative(self.right))
         if not gameboard.is_wall_at_tile(back_slot[0], back_slot[1]) and not back_slot == (opponent.x, opponent.y):
-            valid_moves.append(Move.FACE_DOWN)
+            valid_moves.append(self.absolute_direction_move_from_relative(self.down))
 
         return valid_moves
 
