@@ -1,10 +1,10 @@
 {
-	"width": 15,
-	"height": 15,
+	"width": 14,
+	"height": 14,
 	"player1X": 7,
-	"player1Y": 14,
-	"player2X": 13,
-	"player2Y": 14,
+	"player1Y": 7,
+	"player2X": 10,
+	"player2Y": 2,
 	"initialHP": 2,
 	"maxTurns": 1000,
 	"turrets": [{

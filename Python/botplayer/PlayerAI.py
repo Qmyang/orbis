@@ -1,4 +1,5 @@
 from PythonClientAPI.libs.Game.Enums import *
+from botplayer.Maniac import *
 from PythonClientAPI.libs.Game.MapOutOfBoundsException import *
 import operator
 import math
@@ -7,7 +8,6 @@ import math
 class PlayerAI:
     def __init__(self):
         # Initialize any objects or variables you need here.
-
             self.i = 0
             self.up = None
             self.right = None
@@ -17,6 +17,7 @@ class PlayerAI:
             self.width = None
             self.turret_counter = None
             self.vertical = None
+            self.maniac = Maniac()
 
     def relative_offset_to_absolute(self,facing, x, y):
         if facing == Direction.UP:
@@ -84,8 +85,6 @@ class PlayerAI:
             for bullet in bullets:
                 if bullet.direction == player.direction:
                     return True
-                else:
-                    pass
         return False
 
     def distance(self, pos1, pos2):
@@ -223,6 +222,7 @@ class PlayerAI:
         return valid_moves
 
 
+
         # if there is a bullet right behind you, you can only move forward
 
     def update_turret_counters(self, gameboard):
@@ -241,12 +241,19 @@ class PlayerAI:
     def get_move(self, gameboard, player, opponent):
         # Write your AI here.
 
-        self.update_turret_counters(gameboard);
+        self.update_turret_counters(gameboard)
         self.translate_directions(player, gameboard)
         move_choice = Move.NONE
         valid_moves = self.get_valid_moves(gameboard, player, opponent)
         print (valid_moves)
-        for move in valid_moves:
-            move_choice = move
+
+        temp_move = self.maniac.checkforassasin(gameboard,player,opponent)
+        if temp_move in valid_moves:
+            move_choice = temp_move
+        else:
+            for move in valid_moves:
+                move_choice = move
         return move_choice
+
+
 
