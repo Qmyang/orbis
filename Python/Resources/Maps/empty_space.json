@@ -1,0 +1,21 @@
+{
+	"width": 15,
+	"height": 15,
+	"player1X": 7,
+	"player1Y": 14,
+	"player2X": 13,
+	"player2Y": 14,
+	"initialHP": 2,
+	"maxTurns": 1000,
+	"turrets": [{
+		"x": 7,
+		"y": 10,
+		"fireTime": 2,
+		"cooldownTime": 3}]
+	"shield": [],
+	"teleport": [],
+	"teleportPad": [],
+	"laser": [],
+	"walls": []
+	}
+
